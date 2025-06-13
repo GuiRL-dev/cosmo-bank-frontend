@@ -4,10 +4,14 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {PrimaryInput} from '../../components/primary-input/primary-input';
 import {Router} from '@angular/router';
 import {LoginService} from '../../services/login';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
   imports: [DefaultLoginLayout, ReactiveFormsModule, PrimaryInput],
+  providers:[
+    LoginService
+  ],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -17,7 +21,8 @@ export class Login {
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private toastr: ToastrService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,8 +32,8 @@ export class Login {
 
   submit(){
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => console.log("Sucesso"),
-      error: () => console.log("Erro")
+      next: () => this.toastr.success("Sucesso"),
+      error: () => this.toastr.error("Erro")
     })
   }
   navigate(){
