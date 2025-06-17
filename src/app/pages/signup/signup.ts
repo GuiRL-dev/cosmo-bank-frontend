@@ -11,8 +11,7 @@ interface SignupForm{
   cpf: FormControl,
   number: FormControl,
   email: FormControl,
-  password: FormControl,
-  date: FormControl
+  password: FormControl
 }
 
 @Component({
@@ -38,19 +37,19 @@ export class Signup {
       cpf: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       number: new FormControl('', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      date: new FormControl(null)
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 
   submit(){
-    const formData = this.signupForm.value;
-    formData.date = new Date().toISOString;
 
-    this.loginService.register(this.signupForm.value.name, this.signupForm.value.cpf, this.signupForm.value.number, this.signupForm.value.email, this.signupForm.value.password,this.signupForm.value.date).subscribe({
-      next: () => this.toastr.success("Sucesso"),
+    this.loginService.register(this.signupForm.value.name, this.signupForm.value.cpf, this.signupForm.value.number, this.signupForm.value.email, this.signupForm.value.password).subscribe({
+      next: () => {
+        this.router.navigate(["dashboard"]);
+      },
       error: () => this.toastr.error("Erro")
     })
+
   }
   navigate(){
     this.router.navigate(["login"]);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {LoginResponseType} from '../types/login-response.type';
 import {tap} from 'rxjs';
@@ -13,21 +13,27 @@ export class LoginService {
 
   }
 
-  login(email: string, password: string){
+  login(email: string, password: string) {
     return this.httpClient.post<LoginResponseType>(this.apirUlr + "/login", {email, password}).pipe(
       tap((value) => {
-        sessionStorage.setItem("auth-token", value.token)
-        sessionStorage.setItem("id", value.id)
-      }
-    ))
+          sessionStorage.setItem("auth-token", value.Token)
+          sessionStorage.setItem("email", value.Email)
+        }
+      ))
   }
 
-    register(name: string,cpf: string, number: string, email: string, password: string, date: Date){
-    return this.httpClient.post<LoginResponseType>(this.apirUlr + "/register", {name, cpf, number, email, password, date}).pipe(
+  register(name: string, cpf: string, number: string, email: string, password: string) {
+    return this.httpClient.post<LoginResponseType>(this.apirUlr + "/register", {
+      name,
+      cpf,
+      number,
+      email,
+      password
+    }).pipe(
       tap((value) => {
-        sessionStorage.setItem("auth-token", value.token)
-        sessionStorage.setItem("id", value.id)
-      }
-    ))
+          sessionStorage.setItem("auth-token", value.Token)
+          sessionStorage.setItem("email", value.Email)
+        }
+      ))
   }
 }
