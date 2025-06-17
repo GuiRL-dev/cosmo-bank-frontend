@@ -42,6 +42,10 @@ export class Transfer implements OnInit {
           next: () => {
             sessionStorage.setItem('number', this.pixKey)
             this.router.navigate(['result']);
+          },
+          error: () => {
+            sessionStorage.setItem('number', this.pixKey)
+            this.router.navigate(['result']);
           }
         })
       }

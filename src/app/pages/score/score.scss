@@ -1,0 +1,234 @@
+@use "../../../styles/variables" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+// 3. Estilos Base (Mobile First - 100% da tela)
+html, body {
+  height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden; // Previne scrollbar global
+}
+
+body {
+  @include flex-center;
+  background-color: $var-light-background;
+}
+
+.app-screen {
+  width: 100%;
+  height: 100dvh;
+  background-color: $var-dark-red;
+  @include flex-col;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+}
+
+
+@media (min-width: 768px) {
+  .app-screen {
+    border-radius: 25px;
+  }
+}
+
+// 6. Cabeçalho
+.header-vitor {
+  @include flex-row;
+  align-items: center;
+  color: $var-white;
+  background-color: $var-dark-red;
+  .fechar {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+  }
+}
+
+.greeting-vitor {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+// 7. Conteúdo Principal (scrollable)
+.main-content-score {
+  flex-grow: 1; // Para ocupar o espaço restante
+  @include flex-col;
+  align-items: center; // Centraliza o card na tela
+  padding-top: 30px; // Espaçamento do topo
+  padding-left: 20px; // Padding lateral para o card
+  padding-right: 20px; // Padding lateral para o card
+  background-color: $var-dark-red; // Parte inferior também vermelha
+}
+
+// 8. Card do Score
+.score-card {
+  background-color: $var-card-background;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  width: 100%; // Ocupa a largura disponível no padding do main-content-score
+  max-width: 340px; // Limita a largura máxima do card
+  text-align: center;
+  @include flex-col;
+  align-items: center; // Para centralizar o conteúdo interno do card
+}
+
+.card-title-score {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: $var-black;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.score-status {
+  background-color: $var-score-status-bad-bg;
+  color: $var-score-status-bad-text;
+  font-size: 0.7em;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  position: absolute; // Posicionamento absoluto em relação ao score-card
+  top: 25px; // Ajuste conforme a imagem
+  right: 25px; // Ajuste conforme a imagem
+}
+
+// 9. Medidor de Score (Arco)
+.score-meter-container {
+  width: 200px; // Largura total do componente do medidor
+  height: 100px; // Metade da altura para o semicírculo
+  overflow: hidden; // Esconde a parte inferior do círculo
+  margin: 20px auto;
+  position: relative;
+  right: -10px;
+}
+
+.score-meter {
+  width: 180px;
+  height: 180px; // Diâmetro total do círculo
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(180deg); // Rotaciona para o arco começar na parte inferior
+}
+
+.score-arc-background,
+.score-arc-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 15px solid transparent; // A largura da borda define a espessura do arco
+  border-top-color: $var-score-background-arc-color;
+  border-right-color: $var-score-background-arc-color;
+  box-sizing: border-box; // Inclui padding e borda no tamanho
+}
+
+.score-arc-fill {
+  border-top-color: $var-score-fill-color;
+  border-right-color: $var-score-fill-color;
+  transform: rotate(67deg); /* 37% de 180 graus (aprox.) - para simular o preenchimento do arco */
+  z-index: 2; /* Acima do fundo */
+  transition: transform 1s ease-in-out; /* Animação simples */
+}
+
+.score-value-box {
+  @include flex-col;
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-180deg); /* Centraliza e inverte a rotação */
+  color: $var-black;
+}
+
+.score-value {
+  font-size: 2.5em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.score-max {
+  font-size: 0.9em;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+// 10. Descrição do Score
+.score-description {
+  font-size: 0.90em;
+  color: $var-gray-text;
+  line-height: 1.4;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding: 0 10px; // Padding lateral para o texto
+}
+
+// 11. Botão Voltar
+.return-button {
+  background-color: $var-button-red-bg;
+  color: $var-button-text-color;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; // Ocupa a largura total do card
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: darken($var-button-red-bg, 10%);
+  }
+}
+
+// 12. Botão Inferior Flutuante
+.how-to-increase-button {
+  position: absolute;
+  bottom: 30px; // Distância do fundo
+  left: 50%;
+  transform: translateX(-50%); // Centraliza horizontalmente
+  background-color: $var-button-red-bg; // Mesma cor do botão superior
+  color: $var-button-text-color;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); // Sombra para o efeito flutuante
+  white-space: nowrap; // Impede quebra de linha
+  max-width: 90%; // Garante que não exceda a largura da tela
+  box-sizing: border-box; // Inclui padding no width
+  transition: background-color 0.3s ease;
+
+
+
+  &:hover {
+    background-color: darken($var-button-red-bg, 10%);
+  }
+}

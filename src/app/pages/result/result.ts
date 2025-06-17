@@ -16,7 +16,7 @@ import {AsyncPipe} from '@angular/common';
 export class Result implements OnInit{
 
   amountValue: string | null = null;
-  numberCookie: string = '';
+  numberCookie: string | null = null;
 
   public user$: Observable<UserResponseType | null>
   public user2$: Observable<UserResponseType | null>
@@ -31,7 +31,7 @@ export class Result implements OnInit{
   ngOnInit() {
     this.userService.loadUser();
 
-    this.numberCookie = JSON.stringify(sessionStorage.getItem('number'));
+    this.numberCookie = sessionStorage.getItem('number');
 
     if(this.numberCookie){
       this.userService.loadUserByPix(this.numberCookie)
@@ -44,6 +44,10 @@ export class Result implements OnInit{
 
       this.amountValue = parsedData.value;
     }
+  }
+
+  navigate(){
+    this.router.navigate(['dashboard']);
   }
 
 }

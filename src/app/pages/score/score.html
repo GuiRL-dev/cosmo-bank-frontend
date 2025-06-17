@@ -1,1 +1,31 @@
-<p>score works!</p>
+<main>
+  <div class="app-screen">
+    <div class="header-vitor">
+    </div>
+    <div class="main-content-score">
+      <div class="score-card">
+        <h2 class="card-title-score">Score</h2>
+
+        <div class="score-meter-container">
+          <div class="score-meter">
+            <div class="score-arc-background"></div>
+            <div class="score-arc-fill"></div>
+            <div class="score-value-box">
+              @if (user$ | async; as user) {
+                <span class="score-value">{{ user.General_score }}</span>
+              }
+              <span class="score-max">DE 1000</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="score-description">A pontuação do Score é essencial para que sua conta nesse banco se mantenha online
+          e operante sem restrições.</p>
+
+        <button class="return-button" (click)="navigate()">VOLTAR</button>
+      </div>
+    </div>
+
+<!--    <button class="how-to-increase-button">Como Aumentar meu SCORE?</button>-->
+  </div>
+</main>
