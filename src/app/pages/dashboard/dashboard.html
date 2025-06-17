@@ -1,0 +1,75 @@
+<main>
+  <div class="app-screen">
+    <div class="top-bar">
+      <div class="profile">
+        <img src="https://picsum.photos/60" alt="Foto de Perfil" class="profile-pic">
+        @if (user$ | async; as user) {
+          <span class="greeting">Olá, {{ user.Name | formatName }}</span>
+        }
+      </div>
+      <div class="icons">
+        <span class="material-symbols-rounded icon-eye">visibility</span>
+        <span class="material-symbols-rounded icon-bell">notifications</span>
+        <span class="material-symbols-rounded icon-menu">menu</span>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="balance-card">
+        <p class="card-label">Saldo disponível</p>
+        <div class="balance-row">
+          @if (user$ | async; as user) {
+            <span class="balance-amount">R$ {{ user.Balance }}</span>
+          }
+          <span class="material-symbols-rounded arrow-right">chevron_right</span>
+        </div>
+        <p class="statement-link">VER EXTRATO</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon-box">
+              <button class="inv-btn" (click)="navigateToPix()">
+              <i class="fa-brands fa-pix"></i>
+              </button>
+            </div>
+          <span class="feature-name">PIX</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <button class="inv-btn" (click)="navigateToScore()">
+            <span class="material-symbols-rounded icon-score">speed</span>
+            </button>
+          </div>
+          <span class="feature-name">SCORE</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <span class="material-symbols-rounded icon-extrato">description</span>
+          </div>
+          <span class="feature-name">EXTRATO</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">
+            <span class="material-symbols-rounded icon-credito">credit_card</span>
+          </div>
+          <span class="feature-name">CRÉDITO</span>
+        </div>
+      </div>
+
+      <div class="navigation-tabs">
+        <span class="tab active">PRINCIPAIS</span>
+        <span class="tab">INVESTIMENTOS</span>
+        <span class="tab">SERVIÇOS</span>
+      </div>
+
+      <div class="investment-card">
+        <p class="card-label">Total investido</p>
+        <div class="investment-row">
+          <span class="investment-amount">R$ 0,00</span>
+          <button class="redeem-button">Resgatar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

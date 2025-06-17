@@ -1,0 +1,17 @@
+<main>
+  <div class="phone-mockup">
+    <div class="container">
+      <div class="header">
+        <button (click)="navigateBack()">
+          <span class="back-arrow material-symbols-rounded">arrow_back_ios_new</span>
+        </button>
+        <h1 class="title">Escolha o contato para <br>transferir R$ {{ amountValue }}</h1>
+        <p class="subtitle">Insira a sua chave pix abaixo para realizar a transferência</p>
+      </div>
+      <div class="search-section">
+        <input type="text" class="search-input" placeholder="Nome, CPF, Email ou Número" [(ngModel)]="pixKey">
+      </div>
+      <button class="circle-arrow" (click)="submit()">➜</button>
+    </div>
+  </div>
+</main>

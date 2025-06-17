@@ -1,0 +1,35 @@
+<main>
+  <div class="phone">
+    <div class="receipt-container">
+      <div class="icon-container">
+        <div class="icon-inner-circle">
+          <span class="checkmark">&#10003;</span>
+        </div>
+      </div>
+
+      <b class="status">Pix Enviado!</b>
+      <p class="amount">R$ {{ amountValue }}</p>
+
+      <div class="details">
+        <b class="section-title">ORIGEM</b>
+        <div class="info">
+          @if (user$ | async; as user) {
+            <p>{{ user.Name }} - CPF: {{ user.Cpf }}</p>
+          }
+        </div>
+
+        <b class="section-title">DESTINO</b>
+        <div class="info">
+          @if (user2$ | async; as user2) {
+            <p>{{ user2.Name }} - CPF: {{ user2.Cpf }}</p>
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <div class="button-container">
+      <button class="share-button">Compartilhar Comprovante</button>
+    </div>
+  </div>
+</main>

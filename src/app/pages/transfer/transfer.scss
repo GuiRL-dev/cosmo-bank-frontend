@@ -1,0 +1,208 @@
+@use "../../../styles/variables" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @include flex-center;
+  min-height: 100%;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.phone-mockup {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  background-color: $card-background;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  @include flex-col;
+  overflow: hidden;
+}
+
+
+
+.container {
+  flex-grow: 1;
+  @include flex-col;
+  padding: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .circle-arrow {
+    width: 50px;
+    height: 50px;
+    background-color: $icon-bg-color;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px $shadow-color;
+    border: none;
+    margin: 360px 0 0 300px;
+  }
+}
+
+.header {
+  padding: 25px 20px 15px 20px;
+  position: relative;
+  text-align: left;
+  background-color: $card-background;
+
+  .back-arrow {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    font-size: 24px;
+    color: $primary-text-color;
+    cursor: pointer;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $primary-text-color;
+    margin: 0;
+    margin-left: 40px;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: $secondary-text-color;
+    margin-top: 5px;
+    margin-left: 40px;
+    line-height: 1.4;
+  }
+}
+
+.search-section {
+  padding: 10px 20px;
+  background-color: $card-background;
+  .search-input {
+    width: calc(100% - 20px);
+    padding: 14px 15px;
+    font-size: 16px;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    outline: none;
+    box-sizing: border-box;
+    color: $primary-text-color;
+    background-color: #f8f8f8;
+
+    &::placeholder {
+      color: $placeholder-color;
+    }
+
+    &:focus {
+      border-color: $input-border-focus;
+      box-shadow: 0 0 0 2px rgba($input-border-focus, 0.2);
+    }
+  }
+}
+
+.contacts-section {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: $card-background;
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: $primary-text-color;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  .frequent-contacts {
+    @include flex-row;
+    justify-content: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+
+    .contact-card {
+      @include flex-col;
+      @include flex-center;
+      text-align: center;
+      cursor: pointer;
+
+      .avatar {
+        @include flex-center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: $frequent-avatar-bg-color;
+        color: $frequent-avatar-text-color;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .name {
+        font-size: 13px;
+        color: $secondary-text-color;
+        max-width: 70px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .all-contacts {
+    .contact-item {
+      @include flex-row;
+      align-items: center;
+      padding: 12px 0;
+      cursor: pointer;
+
+      .contact-avatar {
+        @include flex-center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: $avatar-bg-color;
+        color: $primary-text-color;
+        font-size: 16px;
+        font-weight: 500;
+        margin-right: 15px;
+      }
+
+      .contact-avatar.icon-bg {
+        background-color: $icon-bg-color;
+        .material-symbols-rounded {
+          font-size: 22px;
+          color: $secondary-text-color;
+        }
+      }
+
+      .contact-name {
+        font-size: 16px;
+        color: $primary-text-color;
+        font-weight: 500;
+      }
+    }
+  }
+}

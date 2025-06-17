@@ -1,0 +1,18 @@
+<main>
+  <div class="phone">
+    <button class="fechar" (click)="navigate()">✕</button>
+    <div class="top-text">Transferência</div>
+    <div class="saldo">Saldo disponível: @if (user$ | async; as user) {
+      <strong>R$ {{ user.Balance }}</strong>
+    }</div>
+    <form [formGroup]="transferForm">
+      <app-primary-input
+        formControlName="value"
+        inputName="value"
+        type="text"
+        label="Valor"
+        placeHolder="R$ 100"/>
+      <button class="circle-arrow" (click)="submit()">➜</button>
+    </form>
+  </div>
+</main>

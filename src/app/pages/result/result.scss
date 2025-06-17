@@ -1,0 +1,111 @@
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: calibri;
+}
+
+.phone {
+  background: #fff;
+  height: 100dvh;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.receipt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  flex-grow: 1;
+
+  .icon-container {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #f0e6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .icon-inner-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #4a0f0f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .checkmark {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+  }
+
+  .status {
+    font-size: 35px;
+    color: #333;
+    margin-bottom: -15px;
+  }
+
+  .amount {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 70px;
+    margin-left: -3px;
+  }
+}
+
+.details {
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+  .section-title {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold; // font-calibri não é uma propriedade válida, substituído por font-weight
+  }
+
+  .info {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 15px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.button-container {
+  padding: 0 20px 20px;
+}
+
+.share-button {
+  background-color: #4a0f0f;
+  color: white;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
